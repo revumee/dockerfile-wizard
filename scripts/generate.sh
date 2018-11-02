@@ -74,6 +74,12 @@ if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
 
+# install protobufs 3.6.1
+echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protoc-3.6.1-linux-x86_64.zip && \\
+	unzip protoc-3.6.1-linux-x86_64.zip -d protoc3 && \\
+	sudo mv protoc3/bin/* /usr/local/bin/ && \\
+	sudo mv protoc3/include/* /usr/local/include/"
+
 if [ $DOCKERIZE = "true" ] ; then
 DOCKERIZE_VERSION="v0.6.1"
 
