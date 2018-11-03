@@ -55,6 +55,10 @@ jobs:
   test_image:
     docker:
       - image: $DOCKER_USERNAME/builder_java_node_proto:v1.0
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
+          
         environment:
           <<: *image_config
 
