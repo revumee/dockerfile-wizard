@@ -14,6 +14,7 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	curl -OL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
 	tar zxvf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz google-cloud-sdk && \\
 	./google-cloud-sdk/install.sh --quiet && \\
+	hash -r && \\
 	gcloud components update"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
