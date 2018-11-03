@@ -14,8 +14,7 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	curl -OL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
 	tar zxvf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz google-cloud-sdk && \\
 	./google-cloud-sdk/install.sh --quiet && \\
-	hash -r && \\
-	gcloud components update"
+	/google-cloud-sdk/bin/gcloud components update"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
     echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
