@@ -9,7 +9,8 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	apt-get install unzip && \\
 	unzip protoc-3.6.1-linux-x86_64.zip -d protoc3 && \\
 	mv protoc3/bin/* /usr/local/bin/ && \\
-	mv protoc3/include/* /usr/local/include/"
+	mv protoc3/include/* /usr/local/include/ && \\
+	apt-get install google-cloud-sdk"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
     echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
