@@ -6,11 +6,13 @@ echo "RUN apt-get update"
 
 # install protobufs 3.6.1
 echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protoc-3.6.1-linux-x86_64.zip && \\
+	uname -a && \\
 	apt-get install unzip && \\
 	unzip protoc-3.6.1-linux-x86_64.zip -d protoc3 && \\
 	mv protoc3/bin/* /usr/local/bin/ && \\
 	mv protoc3/include/* /usr/local/include/ && \\
 	echo 'deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main' | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \\
+	cat /etc/apt/sources.list.d/google-cloud-sdk.list && \\
 	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \\
 	apt-get update && \\
 	apt-get install google-cloud-sdk"
