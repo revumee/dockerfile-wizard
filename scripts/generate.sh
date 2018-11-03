@@ -5,12 +5,14 @@ echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 echo "RUN apt-get update"
 
 # install protobufs 3.6.1, grpc-web and gcloud
-echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protoc-3.6.1-linux-x86_64.zip && \\
-	uname -a && \\
-	apt-get install unzip && \\
-	unzip protoc-3.6.1-linux-x86_64.zip -d protoc3 && \\
-	mv protoc3/bin/* /usr/local/bin/ && \\
-	mv protoc3/include/* /usr/local/include/ && \\
+echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-all-3.6.1.tar.gz && \\
+	tar zxvf protobuf-all-3.6.1.tar.gz && \\
+	cd protobuf-3.6.1 && \\
+	./autogen.sh && \\
+	./configure && \\
+	make && \\
+	make install && \\
+	cd .. && \\
 	curl -OL https://github.com/grpc/grpc-web/archive/1.0.0.tar.gz && \\
 	tar zxvf 1.0.0.tar.gz && \\
 	cd grpc-web-1.0.0 && \\
