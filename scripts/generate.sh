@@ -12,7 +12,7 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	mv protoc3/include/* /usr/local/include/ && \\
 	echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \\
 	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \\
-	apt-get update &&
+	apt-get update && \\
 	apt-get install google-cloud-sdk"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
