@@ -22,7 +22,13 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	tar zxvf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz google-cloud-sdk && \\
 	./google-cloud-sdk/install.sh --quiet && \\
 	ln -s /google-cloud-sdk/bin/gcloud /usr/local/bin/gcloud && \\
-	gcloud components update"
+	gcloud components update && \\
+	rm -rf protobuf-3.6.1 && \\
+	rm -rf protobuf-all-3.6.1.tar.gz && \\
+	rm -rf grpc-web-1.0.0 && \\        
+	rm -rf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
+	rm -rf google-cloud-sdk && \\                          
+	rm -rf 1.0.0.tar.gz"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
     echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
