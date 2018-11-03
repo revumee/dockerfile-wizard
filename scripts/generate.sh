@@ -27,7 +27,6 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	rm -rf protobuf-all-3.6.1.tar.gz && \\
 	rm -rf grpc-web-1.0.0 && \\        
 	rm -rf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
-	rm -rf google-cloud-sdk && \\                          
 	rm -rf 1.0.0.tar.gz"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
