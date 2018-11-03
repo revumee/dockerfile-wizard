@@ -11,11 +11,9 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	unzip protoc-3.6.1-linux-x86_64.zip -d protoc3 && \\
 	mv protoc3/bin/* /usr/local/bin/ && \\
 	mv protoc3/include/* /usr/local/include/ && \\
-	echo 'deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main' | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \\
-	cat /etc/apt/sources.list.d/google-cloud-sdk.list && \\
-	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \\
-	apt-get update && \\
-	apt-get install google-cloud-sdk"
+	curl -OL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
+	tar zxvf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz google-cloud-sdk && \\
+	./google-cloud-sdk/install.sh"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
     echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
