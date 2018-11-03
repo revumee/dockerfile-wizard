@@ -12,7 +12,7 @@ echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download
 	mv protoc3/bin/* /usr/local/bin/ && \\
 	mv protoc3/include/* /usr/local/include/ && \\
 	curl -OL https://github.com/grpc/grpc-web/archive/1.0.0.tar.gz && \\
-	tar zxvf grpc-web-1.0.0.tar.gz && \\
+	tar zxvf 1.0.0.tar.gz && \\
 	pushd grpc-web-1.0.0 && \\
 	make install-plugin && \\
 	popd && \\
