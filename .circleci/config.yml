@@ -6,7 +6,7 @@ image_config: &image_config
 
   IMAGE_NAME: builder_java_node_proto
 
-  IMAGE_TAG: v1.0
+  IMAGE_TAG: v1.1
 
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
