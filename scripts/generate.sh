@@ -5,29 +5,29 @@ echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 echo "RUN apt-get update"
 
 # install protobufs 3.6.1, grpc-web and gcloud
-echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-all-3.6.1.tar.gz && \\
-	tar zxvf protobuf-all-3.6.1.tar.gz && \\
-	cd protobuf-3.6.1 && \\
+echo "RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.9.1/protobuf-all-3.9.1.tar.gz && \\
+	tar zxvf protobuf-all-3.9.1.tar.gz && \\
+	cd protobuf-3.9.1 && \\
 	./autogen.sh && \\
 	./configure && \\
 	make && \\
 	make install && \\
 	cd .. && \\
-	curl -OL https://github.com/grpc/grpc-web/archive/1.0.0.tar.gz && \\
-	tar zxvf 1.0.0.tar.gz && \\
-	cd grpc-web-1.0.0 && \\
+	curl -OL https://github.com/grpc/grpc-web/archive/1.0.6.tar.gz && \\
+	tar zxvf 1.0.6.tar.gz && \\
+	cd grpc-web-1.0.6 && \\
 	make install-plugin && \\
 	cd .. && \\
-	curl -OL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
-	tar zxvf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz google-cloud-sdk && \\
+	curl -OL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-258.0.0-linux-x86_64.tar.gz && \\
+	tar zxvf google-cloud-sdk-258.0.0-linux-x86_64.tar.gz google-cloud-sdk && \\
 	./google-cloud-sdk/install.sh --quiet && \\
 	ln -s /google-cloud-sdk/bin/gcloud /usr/local/bin/gcloud && \\
 	gcloud components update && \\
-	rm -rf protobuf-3.6.1 && \\
-	rm -rf protobuf-all-3.6.1.tar.gz && \\
-	rm -rf grpc-web-1.0.0 && \\        
-	rm -rf google-cloud-sdk-223.0.0-linux-x86_64.tar.gz && \\
-	rm -rf 1.0.0.tar.gz"
+	rm -rf protobuf-3.9.1 && \\
+	rm -rf protobuf-all-3.9.1.tar.gz && \\
+	rm -rf grpc-web-1.0.6 && \\        
+	rm -rf google-cloud-sdk-258.0.0-linux-x86_64.tar.gz && \\
+	rm -rf 1.0.6.tar.gz"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
     echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
@@ -74,19 +74,21 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
 		apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
-    echo | add-apt-repository -y ppa:webupd8team/java && \\
+    echo | add-apt-repository -y ppa:linuxuprising/java && \\
     apt-get update && \\
     echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
     echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java8-installer \\
+    apt-get -y install oracle-java11-installer \\
+    apt-get -y install oracle-java11-set-default \\
 ; elif [ \$(grep 'VERSION_ID="16.04"' /etc/os-release) ] ; then \\
     apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
-    echo | add-apt-repository -y ppa:webupd8team/java && \\
+    echo | add-apt-repository -y ppa:linuxuprising/java && \\
     apt-get update && \\
     echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
     echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java8-installer \\
+    apt-get -y install oracle-java11-installer \\
+    apt-get -y install oracle-java11-set-default \\
 ; fi
 EOF
 fi
