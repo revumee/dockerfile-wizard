@@ -72,27 +72,17 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 ; elif [ \$(grep 'VERSION_ID="9"' /etc/os-release) ] ; then \\
 		apt-get update && apt-get -y -q --no-install-recommends install -t stable openjdk-8-jdk ca-certificates-java \\
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
-		apt-get update && \\
+	apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
-    echo | add-apt-repository -y ppa:linuxuprising/java && \\
-    apt-get update && \\
-    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java11-installer-local && \\
-    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java11-set-default-local \\
+    echo | add-apt-repository -y ppa:openjdk-r/ppa && \\
+    apt-get update -q && \\
+    apt install -y openjdk-11-jdk \\
 ; elif [ \$(grep 'VERSION_ID="16.04"' /etc/os-release) ] ; then \\
     apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
-    echo | add-apt-repository -y ppa:linuxuprising/java && \\
-    apt-get update && \\
-    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java11-installer-local && \\
-    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java11-set-default-local \\
+    echo | add-apt-repository -y ppa:openjdk-r/ppa && \\
+    apt-get update -q && \\
+    apt install -y openjdk-11-jdk \\
 ; fi
 EOF
 fi
